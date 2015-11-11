@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Server {
+public class Server implements IServer {
 	private boolean running;
 	private final int port;
 	private final List<ClientHandler> clients = Collections.synchronizedList(new LinkedList<ClientHandler>());

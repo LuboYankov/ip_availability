@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-public class ClientHandler implements Runnable {
+public class ClientHandler implements Runnable, IClientHandler {
 	
 	private final Socket socket;
 	private static final String COMMAND_STOP_SERVER = "shutdown";
