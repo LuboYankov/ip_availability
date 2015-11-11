@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class ClientHandler implements Runnable {
@@ -68,8 +69,7 @@ public class ClientHandler implements Runnable {
 				}
 				break;
 			case "listabsent":
-				
-				break;
+				return this.absentUsers();
 			default:
 				return "error:unknowncommand:" + commands[1];
 		}
@@ -77,7 +77,12 @@ public class ClientHandler implements Runnable {
 	}
 	
 	public String absentUsers() {
-		return null;
+		String string = "ok";
+		for (Entry<String, User> entry : USERS.entrySet()) {
+		    if(!entry.getValue().isIn()) 
+		    	string += ":" + entry.getKey();
+		}
+		return string;
 	}
 	
 }
