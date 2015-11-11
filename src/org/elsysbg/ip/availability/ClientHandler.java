@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ClientHandler implements Runnable {
 	
 	private final Socket socket;
-	private static final String COMMAND_STOP_SERVER = "stopServer";
+	private static final String COMMAND_STOP_SERVER = "shutdown";
 	private final Server Server;
 	
 	public ClientHandler(Socket socket, Server Server) {
@@ -32,7 +32,6 @@ public class ClientHandler implements Runnable {
 			scanner.close();
 			out.close();
 		} catch(IOException e) {
-			// TODO check if closed before printing error
 			e.printStackTrace();
 		} finally {
 			Server.onClientStopped(this);
@@ -41,7 +40,15 @@ public class ClientHandler implements Runnable {
 	
 	public void stopClient() throws IOException {
 		socket.close();
-		// TODO add variable closed
+	}
+	
+	public String[] parseCommand(String string) {
+		String[] commands = string.split(":");
+		return commands;
+	}
+	
+	public void checkCommand(String[] commands) {
+		
 	}
 	
 }
