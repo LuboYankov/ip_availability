@@ -1,6 +1,8 @@
 package org.elsysbg.ip.availability;
 
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	
@@ -8,6 +10,7 @@ public class User {
 	private int loginCount;
 	private boolean in;
 	private Socket socket;
+	private List<String> dates = new ArrayList<String>();
 	
 	public User(String username, Socket socket) {
 		this.name = username;
