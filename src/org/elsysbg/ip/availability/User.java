@@ -21,6 +21,10 @@ public class User {
 		this.socket = socket;
 	}
 	
+	public Socket getSocket() {
+		return socket;
+	}
+	
 	public String login() {
 		if(isIn()) {
 			return "error:alreadyloggedin";
