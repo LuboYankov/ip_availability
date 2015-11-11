@@ -7,4 +7,19 @@ public class Server {
 	public Server(int port) {
 		this.port = port;
 	}
+	
+	public void startServer() {
+		setRunning();
+	}
+	
+	public boolean isRunning() {
+		return running;
+	}
+	
+	private void setRunning() {
+		if(running) {
+			throw new IllegalStateException("Already running");
+		}
+		running = true;
+	}
 }

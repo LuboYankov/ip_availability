@@ -2,9 +2,11 @@ package org.elsysbg.ip.availability;
 
 public class StartServer {
 
+	private static final int SERVER_PORT = 31111;
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		final Server server = new Server(SERVER_PORT);
+		server.startServer();
 	}
 
 }
