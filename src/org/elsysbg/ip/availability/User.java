@@ -12,4 +12,16 @@ public class User {
 		this.in = false;
 	}
 	
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getLoginCounts() {
+		return this.loginCount;
+	}
+	
+	public boolean isIn() {
+		return in;
+	}
+	
 }
