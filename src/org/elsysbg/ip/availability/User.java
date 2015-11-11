@@ -16,13 +16,18 @@ public class User {
 		this.socket = socket;
 	}
 	
-	public void login() {
+	public String login() {
 		this.in = true;
 		this.loginCount++;
+		return "ok";
 	}
 	
-	public void logout() {
+	public String logout() {
+		if(isIn()) {
+			return "error:alreadyloggedin";
+		}
 		this.in = false;
+		return "ok";
 	}
 	
 	public String getName() {
