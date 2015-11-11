@@ -47,8 +47,19 @@ public class ClientHandler implements Runnable {
 		return commands;
 	}
 	
-	public void checkCommand(String[] commands) {
-		
+	public void checkCommand(String[] commands) throws IllegalArgumentException {
+		switch(commands[1]) {
+			case "login": //user login
+				break;
+			case "logout": // user logout
+				break;
+			case "info": // user info
+				break;
+			case "listabsent": // listing users that are not logged in
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown command - " + commands[1]);
+		}
 	}
 	
 }
