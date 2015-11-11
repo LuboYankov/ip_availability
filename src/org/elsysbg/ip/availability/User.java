@@ -17,14 +17,17 @@ public class User {
 	}
 	
 	public String login() {
+		if(isIn()) {
+			return "error:alreadyloggedin";
+		}
 		this.in = true;
 		this.loginCount++;
 		return "ok";
 	}
 	
 	public String logout() {
-		if(isIn()) {
-			return "error:alreadyloggedin";
+		if(!isIn()) {
+			return "error:alreadyloggedout";
 		}
 		this.in = false;
 		return "ok";
