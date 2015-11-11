@@ -69,6 +69,9 @@ public class ClientHandler implements Runnable {
 				}
 				break;
 			case "listabsent":
+				if(!USERS.containsKey(commands[0])) {
+					return "error:notloggedin";
+				}
 				return this.absentUsers();
 			default:
 				return "error:unknowncommand:" + commands[1];
