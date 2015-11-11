@@ -62,7 +62,10 @@ public class ClientHandler implements Runnable {
 					return USERS.get(commands[0]).logout();
 				}
 				break;
-			case "info": // user info
+			case "info": 
+				if(USERS.containsKey(commands[2])) {
+					return USERS.get(commands[2]).info();
+				}
 				break;
 			case "listabsent": // listing users that are not logged in
 				break;

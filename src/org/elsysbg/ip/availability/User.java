@@ -1,7 +1,9 @@
 package org.elsysbg.ip.availability;
 
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -25,6 +27,7 @@ public class User {
 		}
 		this.in = true;
 		this.loginCount++;
+		this.addDate();
 		return "ok";
 	}
 	
@@ -33,6 +36,7 @@ public class User {
 			return "error:alreadyloggedout";
 		}
 		this.in = false;
+		this.addDate();
 		return "ok";
 	}
 	
@@ -46,6 +50,25 @@ public class User {
 	
 	public boolean isIn() {
 		return in;
+	}
+	
+	public String info() {
+		return "ok:" + getLoginCounts() + datesToString();
+	}
+	
+	public void addDate() {
+		SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH'_'mm'_'ss.SSSZ");
+		Date date = new Date();
+		String dateFormatted = DATE_FORMAT.format(date);
+		this.dates.add(dateFormatted);
+	}
+	
+	public String datesToString() {
+		String string = "";
+		for(int i = 0; i < dates.size(); i++) {
+			string += ":"+dates.get(i);
+		}
+		return string;
 	}
 	
 }
