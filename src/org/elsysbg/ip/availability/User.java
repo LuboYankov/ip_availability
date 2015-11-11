@@ -57,7 +57,7 @@ public class User {
 	}
 	
 	public String info() {
-		return "ok:" + getLoginCounts() + datesToString();
+		return "ok:" + getName() + ":" + isIn() + ":" + getLoginCounts() + datesToString();
 	}
 	
 	public void addDate() {
@@ -70,7 +70,7 @@ public class User {
 	public String datesToString() {
 		String string = "";
 		for(int i = 0; i < dates.size(); i++) {
-			string += ":"+dates.get(i);
+			string += ":" + dates.get(i);
 		}
 		return string;
 	}

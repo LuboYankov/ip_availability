@@ -67,11 +67,16 @@ public class ClientHandler implements Runnable {
 					return USERS.get(commands[2]).info();
 				}
 				break;
-			case "listabsent": // listing users that are not logged in
+			case "listabsent":
+				
 				break;
 			default:
-				return "Unknown command - " + commands[1];
+				return "error:unknowncommand:" + commands[1];
 		}
+		return null;
+	}
+	
+	public String absentUsers() {
 		return null;
 	}
 	
