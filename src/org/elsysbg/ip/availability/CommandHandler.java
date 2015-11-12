@@ -39,14 +39,14 @@ public class CommandHandler {
 		}
 	}
 	
-	public String login(String[] commands) {
+	private String login(String[] commands) {
 		if(!USERS.containsKey(commands[0])) {
 			USERS.put(commands[0], new User(commands[0], socket));
 		}
 		return USERS.get(commands[0]).login();
 	}
 	
-	public String logout(String[] commands) {
+	private String logout(String[] commands) {
 		if(USERS.containsKey(commands[0])) {
 			return USERS.get(commands[0]).logout();
 		} else {
@@ -54,7 +54,7 @@ public class CommandHandler {
 		}
 	}
 	
-	public String info(String[] commands) {
+	private String info(String[] commands) {
 		if(USERS.containsKey(commands[2])) {
 			return USERS.get(commands[2]).info();
 		} else {
@@ -62,26 +62,26 @@ public class CommandHandler {
 		}
 	}
 	
-	public String listabsent(String[] commands) {
+	private String listabsent(String[] commands) {
 		if(!USERS.containsKey(commands[0])) {
 			return "error:notloggedin";
 		}
 		return this.absentUsers();
 	}
 	
-	public String listavailable(String[] commands) {
+	private String listavailable(String[] commands) {
 		if(!USERS.containsKey(commands[0])) {
 			return "error:notloggedin";
 		}
 		return this.availableUsers();
 	}
 	
-	public String shutdown(Server server) throws IOException {
+	private String shutdown(Server server) throws IOException {
 		server.stopServer();
 		return "";
 	}
 	
-	public String absentUsers() {
+	private String absentUsers() {
 		String string = "ok";
 		for (Entry<String, User> entry : USERS.entrySet()) {
 		    if(!entry.getValue().isIn()) 
@@ -90,7 +90,7 @@ public class CommandHandler {
 		return string;
 	}
 	
-	public String availableUsers() {
+	private String availableUsers() {
 		String string = "ok";
 		for (Entry<String, User> entry : USERS.entrySet()) {
 		    if(entry.getValue().isIn()) 
