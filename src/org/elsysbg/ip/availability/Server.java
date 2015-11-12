@@ -38,7 +38,7 @@ public class Server implements IServer {
 		return running;
 	}
 	
-	private void setRunning() {
+	private synchronized void setRunning() {
 		if(running) {
 			throw new IllegalStateException("Already running");
 		}

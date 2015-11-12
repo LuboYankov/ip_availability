@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class ClientHandler implements Runnable, IClientHandler {
 	
 	private final Socket socket;
-	private static final String COMMAND_STOP_SERVER = "shutdown";
 	private final Server Server;
-	private CommandHandler commandHandler;
+	private final CommandHandler commandHandler;
+	private final static String SHUTDOWN_COMMAND = "shutdown";
 	
 	public ClientHandler(Socket socket, Server Server) {
 		this.socket = socket;
@@ -25,11 +25,10 @@ public class ClientHandler implements Runnable, IClientHandler {
 			final Scanner scanner = new Scanner(socket.getInputStream());
 			while(scanner.hasNextLine()) {
 				final String line = scanner.nextLine();
-				if(COMMAND_STOP_SERVER.equals(line)) {
-					Server.stopServer();
+				out.println(commandHandler.checkCommand(commandHandler.parseCommand(line), Server));
+				if(SHUTDOWN_COMMAND.equals(commandHandler.parseCommand(line)[1])) {
 					break;
 				}
-				out.println(commandHandler.checkCommand(commandHandler.parseCommand(line)));
 			}
 			scanner.close();
 			out.close();

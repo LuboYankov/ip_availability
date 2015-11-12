@@ -1,5 +1,6 @@
 package org.elsysbg.ip.availability;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class CommandHandler {
 		return commands;
 	}
 	
-	public String checkCommand(String[] commands) {
+	public String checkCommand(String[] commands, Server server) throws IOException {
 		switch(commands[1]) {
 			case "login": 
 				return this.login(commands);
@@ -31,6 +32,8 @@ public class CommandHandler {
 				return this.listabsent(commands);
 			case "listavailable":
 				return this.listavailable(commands);
+			case "shutdown":
+				return this.shutdown(server);
 			default:
 				return "error:unknowncommand:" + commands[1];
 		}
@@ -71,6 +74,11 @@ public class CommandHandler {
 			return "error:notloggedin";
 		}
 		return this.availableUsers();
+	}
+	
+	public String shutdown(Server server) throws IOException {
+		server.stopServer();
+		return "";
 	}
 	
 	public String absentUsers() {
