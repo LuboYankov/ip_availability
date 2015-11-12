@@ -29,6 +29,8 @@ public class CommandHandler {
 				return this.info(commands);
 			case "listabsent":
 				return this.listabsent(commands);
+			case "listavailable":
+				return this.listavailable(commands);
 			default:
 				return "error:unknowncommand:" + commands[1];
 		}
@@ -64,10 +66,26 @@ public class CommandHandler {
 		return this.absentUsers();
 	}
 	
+	public String listavailable(String[] commands) {
+		if(!USERS.containsKey(commands[0])) {
+			return "error:notloggedin";
+		}
+		return this.availableUsers();
+	}
+	
 	public String absentUsers() {
 		String string = "ok";
 		for (Entry<String, User> entry : USERS.entrySet()) {
 		    if(!entry.getValue().isIn()) 
+		    	string += ":" + entry.getKey();
+		}
+		return string;
+	}
+	
+	public String availableUsers() {
+		String string = "ok";
+		for (Entry<String, User> entry : USERS.entrySet()) {
+		    if(entry.getValue().isIn()) 
 		    	string += ":" + entry.getKey();
 		}
 		return string;
